@@ -20,5 +20,5 @@ Second way is via MLE: put the S-ARIMA-X into state space formulation (that of H
 
 Here is a sample monthly data from M4 Competiton dataset (#N1944). Black vertical line is train-test split point. All models have the order (1, 1, 1)(1, 0, 1)[12]:
 
-![m4 data comparison](https://github.com/isaidwhynot/sarimax-models/blob/master/ss.PNG?raw=true)
+![m4 data comparison](https://github.com/isaidwhynot/sarimax-models/blob/master/ss.png?raw=true)
 
