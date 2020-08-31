@@ -22,3 +22,30 @@ Here is a sample monthly data from M4 Competiton dataset (#N1944). Black vertica
 
 ![m4 data comparison](https://github.com/isaidwhynot/sarimax-models/blob/master/ss.png?raw=true)
 
+The Kalman way closely follows `statsmodels.tsa.statespace.SARIMAX` and this is because statsmodels also estimates via MLE with Kalman Filter.
+
+## Usage
+
+I tried to write a scikit-learn'esque interface.
+
+For SGD:
+
+```
+from sgd_sarimax import SARIMAX_SGD
+model = SARIMAX_SGD(endog, exog, order=(2, 1, 3), seas_order=(1, 1, 0, 4))
+model_fit = model.fit(max_iter=5_000, eta0=0.1)
+
+preds_in_sample = model.predict_in_sample()
+foreacasts = model.forecast(steps=10)
+```
+
+For KF:
+
+```
+from kalman_sarimax import SARIMAX_KF
+model = SARIMAX_KF(endog, exog, order=(2, 1, 3), seas_order=(1, 1, 0, 4))
+model_fit = model.fit()
+
+preds_in_sample = model.predict_in_sample()
+foreacasts = model.forecast(steps=10)
+```
