@@ -1,30 +1,31 @@
 # sarimax-models
 Estimate S-ARIMA-X models with Stochastic Gradient Descent or Kalman Filter
 
-## What is S-ARIMA-X?
+### What is S-ARIMA-X?
 
-It stands for *Seasonal AutoRegressive Integrated Moving Average with eXogenous variables* :)
+It stands for *Seasonal AutoRegressive Integrated Moving Average with eXogenous variables*...
 
 The formulation is:
 
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-![sarimax eqn](https://github.com/isaidwhynot/sarimax-models/blob/master/CodeCogsEqn.svg?raw=true)
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+![sarimax_eqn](img/model_equation.svg)
 
-## Purpose of the repository
+### Purpose of the repository
 
-We need to estimate those greek letters i.e. the S-AR, S-MA, X parameters of the model, which is said to be of order (p, d, q)(P, D, Q)[m].
+We need to estimate those greek letters, i.e., the S-AR, S-MA, X parameters of the model, which is said to be of order *(p, d, q)(P, D, Q)[m]*.
 
-First way is to use Stochastic Gradient Descent (SGD). Logic is this: fit a large AR(p) model first, get the residuals of it and use it as the residuals in the formulation. Then form the design matrix and employ SGD to find all the parameters.
+First way is to use Stochastic Gradient Descent (SGD). Logic is this: we fit a large AR(p) model first, get the residuals of it and use it as the unobserved noise in the formulation. Then we form the design matrix and employ SGD to find all the parameters.
 
-Second way is via MLE: put the S-ARIMA-X into state space formulation (that of Hamilton is used) then run Kalman Filter for likelihood and a numerical optimizer solves for parameters (e.g BFGS).
+Second way is via MLE: we put the S-ARIMA-X into a (Hamiltonian) state space formulation, run a Kalman filter for likelihood and a numerical optimizer solves for parameters (e.g, L-BFGS).
 
+### Example result
 Here is a sample monthly data from M4 Competiton dataset (#N1944). Black vertical line is train-test split point. All models have the order (1, 1, 1)(1, 0, 1)[12]:
 
-![m4 data comparison](https://github.com/isaidwhynot/sarimax-models/blob/master/ss.png?raw=true)
+![m4_data_comparison](img/example_run.png)
 
-The Kalman way closely follows `statsmodels.tsa.statespace.SARIMAX` and this is because statsmodels also estimates via MLE with Kalman Filter.
+The Kalman filter way closely follows `statsmodels.tsa.statespace.SARIMAX` and this is because statsmodels also estimates via MLE with Kalman Filter.
 
-## Usage
+### Usage
 
 I tried to write a scikit-learn'esque interface.
 
