@@ -16,7 +16,7 @@ We need to estimate those greek letters, i.e., the S-AR, S-MA, X parameters of t
 
 First way is to use Stochastic Gradient Descent (SGD). Logic is this: we fit a large AR(p) model first, get the residuals of it and use it as the unobserved noise in the formulation. Then we form the design matrix and employ SGD to find all the parameters.
 
-Second way is via MLE: we put the S-ARIMA-X into a (Hamiltonian) state space formulation, run a Kalman filter for likelihood and a numerical optimizer solves for parameters (e.g, L-BFGS). *statsmodels* does something like this, too; but they also offer Harvey's representation (that's the default and used in below example).
+Second way is via MLE: we put the S-ARIMA-X into a (Hamiltonian) state space formulation, run a Kalman filter for likelihood and a numerical optimizer solves for parameters (e.g, L-BFGS). [statsmodels](https://www.statsmodels.org/dev/generated/statsmodels.tsa.statespace.sarimax.SARIMAX.html) does something like this, too; but they also offer Harvey's representation (that's the default and used in below example).
 
 ### Example result
 Here is a sample monthly data from [M3 Competiton dataset](https://forecasters.org/resources/time-series-data/m3-competition/). Black vertical line is train-test split point. All models have the order *(2, 1, 1)(1, 0, 2)[12]*:
