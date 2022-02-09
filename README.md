@@ -30,7 +30,7 @@ For SGD:
 ```python
 from sgd_sarimax import SARIMAX_SGD
 model = SARIMAX_SGD(endog, exog, order=(2, 1, 3), seas_order=(1, 1, 0, 4))
-model_fit = model.fit(max_iter=5_000, eta0=0.1)
+model.fit(max_iter=5_000, eta0=0.1)
 
 preds_in_sample = model.predict_in_sample()
 foreacasts = model.forecast(steps=10)
@@ -41,7 +41,7 @@ For KF:
 ```python
 from kalman_sarimax import SARIMAX_KF
 model = SARIMAX_KF(endog, exog, order=(2, 1, 3), seas_order=(1, 1, 0, 4))
-model_fit = model.fit()
+model.fit()
 
 preds_in_sample = model.predict_in_sample()
 foreacasts = model.forecast(steps=10)
